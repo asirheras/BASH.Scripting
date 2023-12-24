@@ -7,17 +7,21 @@ echo " Su elección: "
 read respuesta
 
 case "$respuesta" in
-	1) echo "Su elección ha sido copia de seguridad"
+1)
+	echo "Su elección ha sido copia de seguridad"
 	# Ejecución de la copia de seguridad
 	;;
-	2) echo "Su elección ha sido restaurar"
+2)
+	echo "Su elección ha sido restaurar"
 	# Ejecución de la restauración
 	;;
-	3) echo "Fina del tratamiento"
-	  echo "Hasta luego..."	
+3)
+	echo "Fina del tratamiento"
+	echo "Hasta luego..."
 	exit 0
 	;;
-	*) echo "Opción incorrecta"
+*)
+	echo "Opción incorrecta"
 	echo "Adios ...."
 	exit 1
 	;;
