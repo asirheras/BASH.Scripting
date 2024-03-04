@@ -1,7 +1,5 @@
 #!/bin/bash
-
-echo "Ingrese el nombre para el archivo con extensión sh:"
-read nombre_archivo
+read -p "Ingrese el nombre para el archivos con extensión sh:" nombre_archivo
 
 # Función para comprobar si el archivo existe y preguntar al usuario si desea sobrescribirlo
 comprobar_archivo() {
@@ -25,8 +23,7 @@ comprobar_archivo() {
 
 comprobar_archivo "$nombre_archivo"
 
-echo "Ingrese el nombre del autor:"
-read nombre_autor
+read -rp "Ingrese el nombre del autor" nombre_autor
 
 # Crear el archivo con el nombre proporcionado
 touch "$nombre_archivo.sh"
@@ -36,8 +33,7 @@ echo "# Autor: $nombre_autor" >> "$nombre_archivo.sh"
 echo "# Fecha: $(date +"%Y-%m-%d")" >> "$nombre_archivo.sh"
 
 # Solicitar una breve descripción del script
-echo "Breve descripción del script:"
-read descripcion
+read -rp "Haga una breve descripción del script" descripcion
 
 # Agregar la descripción al archivo
 echo "# Descripción: $descripcion" >> "$nombre_archivo.sh"
