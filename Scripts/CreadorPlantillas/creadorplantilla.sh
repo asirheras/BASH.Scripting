@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p "Ingrese el nombre para el archivos con extensión sh:" nombre_archivo
+read -p "Por favor, ingrese el nombre del script (sin la extensión sh):" nombre_archivo
 
 # Función para comprobar si el archivo existe y preguntar al usuario si desea sobrescribirlo
 comprobar_archivo() {
@@ -8,7 +8,7 @@ comprobar_archivo() {
         echo "¿Está seguro de que desea continuar? Esta acción eliminará permanentemente el archivo existente. (s/n)"
         read respuesta
         if [ "$respuesta" == "n" ]; then
-            echo "Por favor, ingrese otro nombre para el archivo:"
+            echo "Por favor, ingrese otro nombre para el archivo: "
             read nuevo_nombre
             comprobar_archivo "$nuevo_nombre"
         elif [ "$respuesta" != "s" ]; then
@@ -23,7 +23,7 @@ comprobar_archivo() {
 
 comprobar_archivo "$nombre_archivo"
 
-read -rp "Ingrese el nombre del autor" nombre_autor
+read -p "Por favor, ingrese el nombre del autor: " nombre_autor
 
 # Crear el archivo con el nombre proporcionado
 touch "$nombre_archivo.sh"
@@ -33,10 +33,13 @@ echo "# Autor: $nombre_autor" >> "$nombre_archivo.sh"
 echo "# Fecha: $(date +"%Y-%m-%d")" >> "$nombre_archivo.sh"
 
 # Solicitar una breve descripción del script
-read -rp "Haga una breve descripción del script" descripcion
+read -p "Por favor, haga una breve descripción del script: " descripcion
 
 # Agregar la descripción al archivo
 echo "# Descripción: $descripcion" >> "$nombre_archivo.sh"
+
+# Agregar she-bang
+echo "#!/bin/bash" >> "$nombre_archivo.sh"
 
 # Dar permisos de ejecución al archivo
 chmod +x "$nombre_archivo.sh"
