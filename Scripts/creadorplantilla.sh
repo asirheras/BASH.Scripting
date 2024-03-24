@@ -1,11 +1,11 @@
 #!/bin/bash
-read -p "Por favor, ingrese el nombre del script (sin la extensión sh):" nombre_archivo
+read -p "Ingrese el nombre del script (sin la extensión sh):" nombre_archivo
 
 # Función para comprobar si el archivo existe y preguntar al usuario si desea sobrescribirlo
 comprobar_archivo() {
     if [ -e "$1.sh" ]; then
         echo "¡ADVERTENCIA!: Ya existe un archivo con el nombre $1.sh. Sobrescribirá el archivo existente."
-        read -p  "¿Está seguro de que desea continuar? Esta acción eliminará permanentemente el archivo existente. (s/n)" respuesta
+        read -p "¿Está seguro de que desea continuar? Esta acción eliminará permanentemente el archivo existente. (s/n)" respuesta
         if [ "$respuesta" == "n" ]; then
             echo "Por favor, ingrese otro nombre para el archivo: "
             read nuevo_nombre
@@ -31,6 +31,7 @@ touch "$nombre_archivo.sh"
 echo "#!/bin/bash" >> "$nombre_archivo.sh"
 
 # Agregar el autor y la fecha al archivo
+
 echo "# Autor: $nombre_autor" >> "$nombre_archivo.sh"
 echo "# Fecha: $(date +"%Y-%m-%d")" >> "$nombre_archivo.sh"
 
@@ -42,7 +43,7 @@ echo "# Descripción: $descripcion" >> "$nombre_archivo.sh"
 
 
 
-# Dar permisos de ejecución sobre el script
+# Dar permisos de ejecución al archivo
 chmod +x "$nombre_archivo.sh"
 
 # Abrir el archivo con el editor nano

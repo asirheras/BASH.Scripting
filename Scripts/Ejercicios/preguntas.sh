@@ -12,7 +12,7 @@ hacer_pregunta() {
     read -p "Tu respuesta (a/b): " respuesta_usuario
 
     # Convertir la respuesta a minúsculas para hacer la comparación
-    respuesta=$(echo "$respuesta_usuario" | tr [:upper:][:lower:])
+    respuesta_usuario=$(echo "$respuesta_usuario" | tr '[:upper:]' '[:lower:]')
 
     # Comparar la respuesta del usuario con la respuesta correcta
     if [ "$respuesta_usuario" == "$respuesta_correcta" ]; then

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Autor: Andres
+# Autor: Juan Ranchal
 # Descripción: Funciones saludo
 # Fecha: 08/02/2024
 

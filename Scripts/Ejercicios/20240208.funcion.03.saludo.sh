@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Autor: Andres
+# Autor: Juan Ranchal
 # Descripción: Funciones mensaje
 # Fecha: 08/02/2024
 
