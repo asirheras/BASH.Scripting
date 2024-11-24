@@ -1,4 +1,4 @@
-⬜La configuración se basará en la configuración por defecto default-ssl de apache2
+#⬜La configuración se basará en la configuración por defecto default-ssl de apache2
 ⬜Crearemos el certificado y la clave privada de nuestra autoridad de certificación
 ⬜Crearemos ahora el certificado SSL para nuestro dominio
 ⬜Configuraremos el virtualhost de apache2 para que use el certificado de servidor

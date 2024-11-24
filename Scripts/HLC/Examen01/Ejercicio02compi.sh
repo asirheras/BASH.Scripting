@@ -1,4 +1,3 @@
-# Autor: Angel Ordoñez
 # Fecha: 2024-03-07
 # Descripción: Ping a ipa y recogida de resultados enseparados
 #!/bin/bash
