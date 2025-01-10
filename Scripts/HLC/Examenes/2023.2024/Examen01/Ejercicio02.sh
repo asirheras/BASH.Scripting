@@ -1,6 +1,6 @@
 # Autor: Andrés
 # Fecha: 2024-03-06
-# Descripción: Una putada
+# Descripción: 
 #!/bin/bash
 
 # Array con las direcciones IP a verificar

@@ -2,7 +2,7 @@
 # Fecha: 2024-03-06
 # Descripción: Es un ejemplo
 #!/bin/bash
-#!/bin/bash
+
 
 # Comprobar que se proporcionan dos parámetros
 if [ $# -ne 2 ]; then
@@ -55,7 +55,4 @@ done
 echo "Los ficheros del directorio '$origen' se han organizado correctamente en '$destino'."
 
 exit 0
-# Autor: Novel
-# Fecha: 2024-03-06
-# Descripción: dfsdfasdfsdfasdfasdf# Autor: Andrés
-#!/bin/bash
+
