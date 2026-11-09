@@ -11,4 +11,6 @@ Para tener una mayor productividad en la ejecución de los ejercicios, se usó l
 
 ````
 
-Como ejercicio, cree un [creador de plantillas](./creadorplantilla.sh) para evitar el corta pega y la creación de archivo .sh
+Como ejercicio, cree un [creador de plantillas](./creadorplantilla.sh) para evitar el corta pega y la 
+creación de archivo .SH en la misma carpeta donde se ejecuta el script.
+Si quisiera cambiar el destino de guardado, solo hay que cambiarlo en el editor usado (nano, vscode, etc...)
