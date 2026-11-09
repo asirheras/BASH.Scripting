@@ -5,8 +5,8 @@ Para tener una mayor productividad en la ejecución de los ejercicios, se usó l
 ````bash
 #!/bin/bash
 # Script: DNS
-# Autor:	Andrés Heras
-# Fecha:	20240307
+# Autor:	Andrés
+# Fecha:	AAAAMMDD
 # Descripción: listar informacion en el DNS de una lista de direcciones web
 
 ````
