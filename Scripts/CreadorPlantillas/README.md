@@ -1,0 +1,14 @@
+# PLANTILLA Y CREADOR DE PLANTILLAS DE PARA LOS EJERCICIOS DE SCRIPTING EN BASH
+
+Para tener una mayor productividad en la ejecución de los ejercicios, se usó la siguiente plantilla
+
+````bash
+#!/bin/bash
+# Script: DNS
+# Autor:	Andrés Heras
+# Fecha:	20240307
+# Descripción: listar informacion en el DNS de una lista de direcciones web
+
+````
+
+Como ejercicio, cree un [creador de plantillas](./creadorplantilla.sh) para evitar el corta pega y la creación de archivo .sh
