@@ -1,49 +1,69 @@
 #!/bin/bash
-read -p "Por favor, ingrese el nombre del script (sin la extensión sh):" nombre_archivo
+
+#Activación en la shell del mecanismo de parada inmediata ante errores
+
+set -e
 
 # Función para comprobar si el archivo existe y preguntar al usuario si desea sobrescribirlo
+
 comprobar_archivo() {
-    if [ -e "$1.sh" ]; then
-        echo "¡ADVERTENCIA!: Ya existe un archivo con el nombre $1.sh. Sobrescribirá el archivo existente."
-        read -p  "¿Está seguro de que desea continuar? Esta acción eliminará permanentemente el archivo existente. (s/n)" respuesta
-        if [ "$respuesta" == "n" ]; then
-            echo "Por favor, ingrese otro nombre para el archivo: "
-            read nuevo_nombre
-            comprobar_archivo "$nuevo_nombre"
-        elif [ "$respuesta" != "s" ]; then
-            echo "Error: Respuesta inválida. Solo se permite 's' o 'n'."
-            exit 1
-        else
-            rm "$1.sh"
-            echo "El archivo existente ha sido eliminado."
-        fi
+    local eleccion="$1"
+
+    # Si el archivo existe, gestionamos el conflicto
+    if [ -e "${eleccion}.sh" ]; then
+        echo "¡ADVERTENCIA!: Ya existe un archivo con el nombre '${eleccion}.sh'."
+        read -rp "¿Desea sobrescribirlo? (s/n): " respuesta
+
+        case "$respuesta" in
+            [sS])
+                rm -f "${eleccion}.sh"
+                nombre_archivo="$eleccion"
+                ;;
+            [nN])
+                read -rp "Por favor, ingrese otro nombre para el archivo (sin .sh): " nuevo_nombre
+                # Llamada recursiva con el nuevo nombre ingresado
+                comprobar_archivo "$nuevo_nombre"
+                ;;
+            *)
+                echo "Opción no válida. Solo se permite 's' o 'n'."
+                # Llamada recursiva manteniendo el mismo eleccion para repetir la pregunta
+                comprobar_archivo "$eleccion"
+                ;;
+        esac
+    else
+        # Caso base: el archivo no existe, asignamos el nombre validado
+        nombre_archivo="$eleccion"
     fi
 }
 
-comprobar_archivo "$nombre_archivo"
+# 1. Solicitar el nombre inicial
+read -rp "Por favor, ingrese el nombre del script (sin la extensión .sh): " nombre_inicial
 
-read -p "Por favor, ingrese el nombre del autor: " nombre_autor
+# Validar que no se introduzca un valor en blanco
+while [ -z "$nombre_inicial" ]; do
+    read -rp "El nombre no puede estar vacío. Ingrese un nombre: " nombre_inicial
+done
 
-# Crear el archivo con el nombre proporcionado
-touch "$nombre_archivo.sh"
+# 2. Iniciar la comprobación recursiva
+comprobar_archivo "$nombre_inicial"
 
-# Agregar she-bang
-echo "#!/bin/bash" >> "$nombre_archivo.sh"
+# Definir la ruta completa del archivo con el nombre ya consolidado
+archivo="${nombre_archivo}.sh"
 
-# Agregar el autor y la fecha al archivo
-echo "# Autor: $nombre_autor" >> "$nombre_archivo.sh"
-echo "# Fecha: $(date +"%Y-%m-%d")" >> "$nombre_archivo.sh"
+# 3. Solicitar datos adicionales
+read -rp "Por favor, ingrese el nombre del autor: " nombre_autor
+read -rp "Por favor, haga una breve descripción del script: " descripcion
 
-# Solicitar una breve descripción del script
-read -p "Por favor, haga una breve descripción del script: " descripcion
+# 4. Generar la cabecera completa en un único bloque
+cat << EOF > "$archivo"
+#!/bin/bash
+# Autor: ${nombre_autor}
+# Fecha: $(date +"%Y-%m-%d")
+# Descripción: ${descripcion}
+EOF
 
-# Agregar la descripción al archivo
-echo "# Descripción: $descripcion" >> "$nombre_archivo.sh"
+# 5. Permisos y apertura del editor
+chmod +x "$archivo"
+"${EDITOR:-nano}" "$archivo"
 
 
-
-# Dar permisos de ejecución sobre el script
-chmod +x "$nombre_archivo.sh"
-
-# Abrir el archivo con el editor nano
-nano "$nombre_archivo.sh"
